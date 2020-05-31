@@ -3,16 +3,25 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 
 export default function Calendar({ date }) {
+  const startDay = date.clone().startOf('month').startOf('week')
+  const endDay = date.clone().endOf('month').endOf('week')
+
+  console.log(startDay, endDay)
+
   return (
     <div className="ui-datepicker">
       <div className="ui-datepicker-material-header">
         <div className="ui-datepicker-material-day">{date.format('dddd')}</div>
         <div className="ui-datepicker-material-date">
-          <div className="ui-datepicker-material-day-num">{date.date()}</div>
+          <div className="ui-datepicker-material-day-num">
+            {date.format('DD')}
+          </div>
           <div className="ui-datepicker-material-month">
             {date.format('MMMM')}
           </div>
-          <div className="ui-datepicker-material-year">{date.year()}</div>
+          <div className="ui-datepicker-material-year">
+            {date.format('YYYY')}
+          </div>
         </div>
       </div>
 
@@ -78,35 +87,6 @@ export default function Calendar({ date }) {
 }
 
 Calendar.propTypes = {
-  date: PropTypes.object,
+  date: PropTypes.instanceOf(moment).isRequired,
+  format: PropTypes.string,
 }
-
-//  <th scope="col" title="Monday">
-//               Mon
-//             </th>
-//             <th scope="col" title="Tuesday">
-//               Tue
-//             </th>
-//             <th scope="col" title="Wednesday">
-//               Wed
-//             </th>
-//             <th scope="col" title="Thursday">
-//               Thu
-//             </th>
-//             <th scope="col" title="Friday">
-//               Fri
-//             </th>
-//             <th scope="col" title="Saturday">
-//               Sat
-//             </th>
-//             <th scope="col" title="Sunday">
-//               Sun
-//             </th>
-
-// <col />
-// <col />
-// <col />
-// <col />
-// <col />
-// <col className="ui-datepicker-week-end" />
-// <col className="ui-datepicker-week-end" />
